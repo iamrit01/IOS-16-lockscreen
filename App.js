@@ -11,23 +11,23 @@ import SwipUpToOpen from "./src/components/SwipUpToOpen";
 export default function App() {
   const [date, setDate] = useState(dayjs());
 
-  // useEffect(() => {
-  //   let timer = setInterval(() => {
-  //     setDate(dayjs());
-  //   }, 1000 * 1);
+  useEffect(() => {
+    let timer = setInterval(() => {
+      setDate(dayjs());
+    }, 1000 * 1);
 
-  //   return () => clearInterval(timer);
-  // }, []);
+    return () => clearInterval(timer);
+  }, []);
   return (
     <ImageBackground source={wallpaper} style={styles.container}>
       <NotificationsList
         ListHeaderComponent={() => (
-          <Animated.View entering={SlideInUp} style={styles.header}>
+          <View style={styles.header}>
             <Ionicons name="ios-lock-closed" size={24} color="white" />
 
             <Text style={styles.date}>{date.format("dddd, DD MMMM")}</Text>
             <Text style={styles.time}>{date.format("hh:mm")}</Text>
-          </Animated.View>
+          </View>
         )}
       />
 

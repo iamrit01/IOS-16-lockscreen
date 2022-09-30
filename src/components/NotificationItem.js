@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   container: {
     height: NOTIFICATION_HEIGHT - 10,
     backgroundColor: "#00000075",
-    margin: 5,
+    margin: 7,
     marginHorizontal: 10,
     padding: 13,
     borderRadius: 20,

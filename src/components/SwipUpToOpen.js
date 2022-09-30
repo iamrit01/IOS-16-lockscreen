@@ -1,4 +1,3 @@
-import { Text } from "react-native";
 import React from "react";
 import { StyleSheet } from "react-native";
 import Animated, {
@@ -6,7 +5,6 @@ import Animated, {
   withTiming,
   withRepeat,
   withSequence,
-  withDecay,
   withDelay,
 } from "react-native-reanimated";
 const SwipUpToOpen = () => {
