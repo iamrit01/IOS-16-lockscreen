@@ -6,6 +6,7 @@ import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import dayjs from "dayjs";
 import NotificationsList from "./src/components/NotificationsList";
 import Animated, { SlideInDown, SlideInUp } from "react-native-reanimated";
+import SwipUpToOpen from "./src/components/SwipUpToOpen";
 
 export default function App() {
   const [date, setDate] = useState(dayjs());
@@ -34,6 +35,7 @@ export default function App() {
         <View style={styles.icon}>
           <MaterialCommunityIcons name="flashlight" size={24} color="white" />
         </View>
+        <SwipUpToOpen />
         <View style={styles.icon}>
           <Ionicons name="ios-camera" size={24} color="white" />
         </View>
@@ -72,6 +74,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     height: 75,
     justifyContent: "space-between",
+    marginBottom: 10,
   },
   icon: {
     backgroundColor: "#00000050",
