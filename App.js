@@ -5,37 +5,39 @@ import wallpaper from "./assets/images/wallpaper.webp";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import dayjs from "dayjs";
 import NotificationsList from "./src/components/NotificationsList";
+import Animated, { SlideInDown, SlideInUp } from "react-native-reanimated";
 
 export default function App() {
   const [date, setDate] = useState(dayjs());
 
-  useEffect(() => {
-    let timer = setInterval(() => {
-      setDate(dayjs());
-    }, 1000 * 1);
+  // useEffect(() => {
+  //   let timer = setInterval(() => {
+  //     setDate(dayjs());
+  //   }, 1000 * 1);
 
-    return () => clearInterval(timer);
-  }, []);
+  //   return () => clearInterval(timer);
+  // }, []);
   return (
     <ImageBackground source={wallpaper} style={styles.container}>
       <NotificationsList
         ListHeaderComponent={() => (
-          <View style={styles.header}>
+          <Animated.View entering={SlideInUp} style={styles.header}>
             <Ionicons name="ios-lock-closed" size={24} color="white" />
-            <Text style={styles.date}>{date.format("dddd, MMMM DD")}</Text>
+
+            <Text style={styles.date}>{date.format("dddd, DD MMMM")}</Text>
             <Text style={styles.time}>{date.format("hh:mm")}</Text>
-          </View>
+          </Animated.View>
         )}
       />
 
-      <View style={styles.footer}>
+      <Animated.View entering={SlideInDown} style={styles.footer}>
         <View style={styles.icon}>
           <MaterialCommunityIcons name="flashlight" size={24} color="white" />
         </View>
         <View style={styles.icon}>
           <Ionicons name="ios-camera" size={24} color="white" />
         </View>
-      </View>
+      </Animated.View>
 
       <StatusBar style="light" />
     </ImageBackground>
