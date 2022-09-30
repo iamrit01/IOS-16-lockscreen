@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, ImageBackground } from "react-native";
 import wallpaper from "./assets/images/wallpaper.webp";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import dayjs from "dayjs";
+import NotificationsList from "./src/components/NotificationsList";
 
 export default function App() {
   const [date, setDate] = useState(dayjs());
@@ -17,13 +18,15 @@ export default function App() {
   }, []);
   return (
     <ImageBackground source={wallpaper} style={styles.container}>
-      <View style={styles.header}>
-        <Ionicons name="ios-lock-closed" size={24} color="white" />
-        <Text style={styles.date}>{date.format("dddd, MMMM DD")}</Text>
-        <Text style={styles.time}>{date.format("hh:mm")}</Text>
-      </View>
-
-      {/* notification list */}
+      <NotificationsList
+        ListHeaderComponent={() => (
+          <View style={styles.header}>
+            <Ionicons name="ios-lock-closed" size={24} color="white" />
+            <Text style={styles.date}>{date.format("dddd, MMMM DD")}</Text>
+            <Text style={styles.time}>{date.format("hh:mm")}</Text>
+          </View>
+        )}
+      />
 
       <View style={styles.footer}>
         <View style={styles.icon}>
