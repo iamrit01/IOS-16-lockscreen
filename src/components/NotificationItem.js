@@ -13,7 +13,7 @@ import Animated, {
 // import useWindowDimensions from "react-native/Libraries/Utilities/useWindowDimensions";
 export const NOTIFICATION_HEIGHT = 80;
 
-const NotificationItem = ({ data, index, listVisibility }) => {
+const NotificationItem = ({ data, index, listVisibility, scrollY }) => {
   const { height } = useWindowDimensions();
   const containerHeight = height - 250 - 85;
   const startPosition = NOTIFICATION_HEIGHT * index;
@@ -34,8 +34,17 @@ const NotificationItem = ({ data, index, listVisibility }) => {
       opacity: listVisibility.value,
     };
   });
+  const animatedLastItemStyle = useAnimatedStyle(() => {
+    const pos1 = startPosition - containerHeight;
+    const pos2 = startPosition + NOTIFICATION_HEIGHT - containerHeight;
+    return {
+      opacity: interpolate(scrollY.value, [pos1, pos2], [0, 1]),
+    };
+  });
   return (
-    <Animated.View style={[styles.container, animatedStyle]}>
+    <Animated.View
+      style={[styles.container, animatedStyle, animatedLastItemStyle]}
+    >
       <Image source={data.icon} style={styles.icon} />
       <View style={{ flex: 1 }}>
         <Text style={styles.title}>{data.title}</Text>

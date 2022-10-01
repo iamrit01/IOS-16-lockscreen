@@ -10,10 +10,12 @@ import Animated, {
 const NotificationsList = ({ footerVisibility, ...flatListProps }) => {
   const { height } = useWindowDimensions();
   const listVisibility = useSharedValue(1);
+  const scrollY = useSharedValue(0);
 
   const handler = useAnimatedScrollHandler({
     onScroll: (event) => {
       const y = event.contentOffset.y;
+      scrollY.value = y;
 
       if (y < 10) {
         // footer open
@@ -43,6 +45,7 @@ const NotificationsList = ({ footerVisibility, ...flatListProps }) => {
           data={item}
           index={index}
           listVisibility={listVisibility}
+          scrollY={scrollY}
         />
       )}
       {...flatListProps}
